@@ -3,8 +3,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- 1. Project Coordinates: A unique identifier for your project. -->
-    <!-- Feel free to change these to fit your needs. -->
     <groupId>com.github.jwave</groupId>
     <artifactId>jwave</artifactId>
     <version>1.0.3</version>
@@ -13,36 +11,48 @@
     <name>JWave</name>
     <description>A library for the Discrete and Fast Wavelet Transform in Java.</description>
 
-    <!-- 2. Project Properties: Configure Java version and encoding. -->
-    <!-- This matches the JavaSE-1.7 and UTF-8 settings. -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.release>21</maven.compiler.release>
+        <!-- Best practice: manage dependency versions in properties -->
+        <junit.jupiter.version>5.10.2</junit.jupiter.version>
     </properties>
 
-    <!-- 3. Dependencies: This replaces the JRE and JUnit containers. -->
-    <!-- Maven will automatically download these libraries for you. -->
     <dependencies>
+        <!--
+          ACTION: Replaced the old JUnit 4 dependency with the JUnit 5 Jupiter API and Engine.
+          The API is for writing tests, and the Engine is for running them.
+        -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13.2</version>
-            <scope>test</scope> <!-- This dependency is only for the test phase. -->
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
-            <!-- This plugin compiles the source code. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-                <configuration>
-                    <source>${maven.compiler.source}</source>
-                    <target>${maven.compiler.target}</target>
-                </configuration>
+                <version>3.13.0</version>
+                <!-- The <configuration> block is not needed when using maven.compiler.release -->
+            </plugin>
+            <!--
+              ACTION: Added the Surefire plugin.
+              This is crucial for Maven to find and run JUnit 5 tests.
+            -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
             </plugin>
         </plugins>
     </build>

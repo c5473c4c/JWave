@@ -1,0 +1,49 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 1. Project Coordinates: A unique identifier for your project. -->
+    <!-- Feel free to change these to fit your needs. -->
+    <groupId>com.github.jwave</groupId>
+    <artifactId>jwave</artifactId>
+    <version>1.0.3</version>
+    <packaging>jar</packaging>
+
+    <name>JWave</name>
+    <description>A library for the Discrete and Fast Wavelet Transform in Java.</description>
+
+    <!-- 2. Project Properties: Configure Java version and encoding. -->
+    <!-- This matches the JavaSE-1.7 and UTF-8 settings. -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+
+    <!-- 3. Dependencies: This replaces the JRE and JUnit containers. -->
+    <!-- Maven will automatically download these libraries for you. -->
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope> <!-- This dependency is only for the test phase. -->
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- This plugin compiles the source code. -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

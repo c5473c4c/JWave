@@ -116,7 +116,7 @@ public class MODWT extends WaveletTransform {
     }
 
     private static double[] upsample(double[] filter, int level) {
-        if (level == 1) return filter;
+        if (level == 1) return filter.clone();  // return a copy to avoid unintended side effects if the caller modifies
         int gap = (1 << (level - 1)) - 1;
         int newLength = filter.length + (filter.length - 1) * gap;
         double[] upsampled = new double[newLength];

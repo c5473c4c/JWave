@@ -90,8 +90,9 @@ public class MODWTTest {
 
     @Test
     public void testEmptyInput() {
-        double[][] coeffs = modwtHaar.forwardMODWT(new double[0], 3);
-        assertEquals(4, coeffs.length); // It will create the outer array
+        int maxLevel = 3;
+        double[][] coeffs = modwtHaar.forwardMODWT(new double[0], maxLevel);
+        assertEquals(maxLevel + 1, coeffs.length); // It will create the outer array
         assertEquals(0, coeffs[0].length); // But inner arrays will be empty
     }
 
